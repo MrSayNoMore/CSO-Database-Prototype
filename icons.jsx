@@ -1,0 +1,63 @@
+// Simple line icons — stroke-based, 1.5 width, 20px default
+const Icon = ({ name, size = 18, className = "", style = {} }) => {
+  const s = size;
+  const common = { width: s, height: s, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 1.6, strokeLinecap: "round", strokeLinejoin: "round", className, style };
+  const paths = {
+    dashboard: <><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></>,
+    search: <><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></>,
+    database: <><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v6c0 1.7 4 3 9 3s9-1.3 9-3V5"/><path d="M3 11v6c0 1.7 4 3 9 3s9-1.3 9-3v-6"/></>,
+    download: <><path d="M12 3v12"/><path d="m7 11 5 5 5-5"/><path d="M3 21h18"/></>,
+    upload: <><path d="M12 21V9"/><path d="m7 13 5-5 5 5"/><path d="M3 3h18"/></>,
+    user: <><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/></>,
+    users: <><circle cx="9" cy="8" r="3.5"/><path d="M2 20c.7-3.4 3.3-5 7-5s6.3 1.6 7 5"/><circle cx="17" cy="6" r="2.5"/><path d="M19 14c2.4.5 3.5 2 4 5"/></>,
+    shield: <><path d="M12 3 4 6v6c0 4.5 3.2 8.3 8 9 4.8-.7 8-4.5 8-9V6l-8-3z"/></>,
+    chart: <><path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 6-7"/></>,
+    pie: <><path d="M12 3a9 9 0 1 0 9 9h-9V3z"/><path d="M14 3a7 7 0 0 1 7 7"/></>,
+    bell: <><path d="M6 8a6 6 0 0 1 12 0c0 7 3 8 3 8H3s3-1 3-8"/><path d="M10 21a2 2 0 0 0 4 0"/></>,
+    settings: <><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></>,
+    plus: <><path d="M12 5v14"/><path d="M5 12h14"/></>,
+    minus: <><path d="M5 12h14"/></>,
+    x: <><path d="M6 6l12 12"/><path d="M18 6L6 18"/></>,
+    check: <><path d="M5 12l5 5L20 7"/></>,
+    arrowRight: <><path d="M5 12h14"/><path d="m13 5 7 7-7 7"/></>,
+    arrowLeft: <><path d="M19 12H5"/><path d="m11 5-7 7 7 7"/></>,
+    chevronDown: <><path d="m6 9 6 6 6-6"/></>,
+    chevronRight: <><path d="m9 6 6 6-6 6"/></>,
+    filter: <><path d="M3 5h18"/><path d="M6 12h12"/><path d="M10 19h4"/></>,
+    map: <><path d="M9 4 3 6v15l6-2 6 2 6-2V4l-6 2-6-2z"/><path d="M9 4v15"/><path d="M15 6v15"/></>,
+    pin: <><path d="M12 21s-7-6.5-7-12a7 7 0 0 1 14 0c0 5.5-7 12-7 12z"/><circle cx="12" cy="9" r="2.5"/></>,
+    file: <><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9l-6-6z"/><path d="M14 3v6h6"/></>,
+    flag: <><path d="M4 21V4"/><path d="M4 4h13l-2 4 2 4H4"/></>,
+    clock: <><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></>,
+    refresh: <><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/></>,
+    logo: <><circle cx="12" cy="12" r="9"/><path d="M12 3a14 14 0 0 0 0 18"/><path d="M3 12h18"/></>,
+    eye: <><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></>,
+    edit: <><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"/></>,
+    sparkle: <><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M6 18l2.5-2.5M15.5 8.5 18 6"/></>,
+    activity: <><path d="M3 12h4l3-9 4 18 3-9h4"/></>,
+    layers: <><path d="m12 3-9 5 9 5 9-5-9-5z"/><path d="m3 13 9 5 9-5"/><path d="m3 18 9 5 9-5"/></>,
+    book: <><path d="M4 4h6a4 4 0 0 1 4 4v13"/><path d="M20 4h-6a4 4 0 0 0-4 4v13"/><path d="M4 4v15h6"/><path d="M20 4v15h-6"/></>,
+    bolt: <><path d="m13 2-9 13h7l-1 7 9-13h-7l1-7z"/></>,
+    grid: <><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></>,
+    home: <><path d="M3 11 12 3l9 8"/><path d="M5 10v11h14V10"/></>,
+    info: <><circle cx="12" cy="12" r="9"/><path d="M12 16v-5M12 8h.01"/></>,
+    warn: <><path d="M12 3 2 21h20L12 3z"/><path d="M12 10v4M12 18h.01"/></>,
+    mail: <><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></>,
+    phone: <><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.5 2.1L7.9 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.7 2z"/></>,
+    print: <><path d="M6 9V3h12v6"/><rect x="3" y="9" width="18" height="9" rx="1"/><path d="M6 14h12v7H6z"/></>,
+    git: <><circle cx="6" cy="18" r="2"/><circle cx="18" cy="6" r="2"/><circle cx="6" cy="6" r="2"/><path d="M6 8v8"/><path d="M18 8c0 6-12 4-12 10"/></>,
+    sliders: <><path d="M4 6h10"/><path d="M18 6h2"/><circle cx="16" cy="6" r="2"/><path d="M4 12h2"/><path d="M10 12h10"/><circle cx="8" cy="12" r="2"/><path d="M4 18h12"/><path d="M20 18h0"/><circle cx="18" cy="18" r="2"/></>,
+    external: <><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></>,
+    star: <><path d="m12 3 2.6 6.3 6.4.5-5 4.4 1.6 6.8L12 17.5 6.4 21l1.6-6.8-5-4.4 6.4-.5L12 3z"/></>,
+    folder: <><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z"/></>,
+    play: <><path d="M5 3l15 9-15 9V3z"/></>,
+    pause: <><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></>,
+    lock: <><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></>,
+    logout: <><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/></>,
+    moreH: <><circle cx="5" cy="12" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/></>,
+    target: <><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></>
+  };
+  return <svg {...common}>{paths[name] || <circle cx="12" cy="12" r="9"/>}</svg>;
+};
+
+window.Icon = Icon;
