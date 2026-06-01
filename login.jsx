@@ -79,7 +79,16 @@ const LoginScreen = ({ onLogin }) => {
           <div className="field" style={{ marginTop: 14 }}>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
               <label className="field-label">Password</label>
-              <span className="faux-link" style={{ fontSize: 11 }}>Forgot password?</span>
+              <span
+                className="faux-link"
+                style={{ fontSize: 11, cursor: "pointer" }}
+                role="button"
+                tabIndex={0}
+                onClick={() => window.alert("Forgot password? Please contact your administrator or email support@kagiso.org.za for a password reset.")}
+                onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") window.alert("Forgot password? Please contact your administrator or email support@kagiso.org.za for a password reset."); }}
+              >
+                Forgot password?
+              </span>
             </div>
             <input className="input" type="password" value={password} onChange={e => setPassword(e.target.value)} />
           </div>
